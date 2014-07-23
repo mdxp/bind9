@@ -19,11 +19,10 @@ logging {
 			 <% end %>
 		};
 	<% end %>
-	
+
 	<% node[:bind9][:log].each do |category,value| %>
 		category "<%= category %>" {<%= value['categorychannle'].nil? ? value['channel'] : value['categorychannle']%>;};
 	<% end %>
-	
-	
+
+
 };
-      

@@ -15,9 +15,9 @@ elsif platform_family?("rhel")
   default["bind9"]["sysconfig"]= "/etc/sysconfig/named"
 end
 
+default["bind9"]["zonedir"] = "#{node["bind9"]["dir"]}zones"
 default["bind9"]["id"] = Hash.new
 default["bind9"]["viewacl"]["noview"] = "noview"
-default["bind9"]["zonedir"] = "#{node["bind9"]["dir"]}zones"
 
 ########################
 # Keys - RNDC is very critical to bind normal operation so we used a pre-generated key - PLEAS CHANGE THIS KEY BEFOR USING IT!!!!!!!
@@ -29,11 +29,11 @@ default["bind9"]["keys"]["rndc"]["secret"] = "T8/uYW+mMHzpZLtMC4Vpdw=="
 ############################################################
 # Controles
 ############################################################
-default["bind9"]["channle"]["controls"][1]["inet"] = "127.0.0.1"
-default["bind9"]["channle"]["controls"][1]["port"] = "953"
-default["bind9"]["channle"]["controls"][1]["allow"] = "any"
-default["bind9"]["channle"]["controls"][1]["keys"] = "rndc-key"
+default["bind9"]["channel"]["controls"][1]["inet"] = "127.0.0.1"
+default["bind9"]["channel"]["controls"][1]["port"] = "953"
+default["bind9"]["channel"]["controls"][1]["allow"] = "any"
+default["bind9"]["channel"]["controls"][1]["keys"] = "rndc-key"
 
-default["bind9"]["channle"]["statistics-channels"][1]["inet"] = "127.0.0.1"
-default["bind9"]["channle"]["statistics-channels"][1]["port"] = "8123"
-default["bind9"]["channle"]["statistics-channels"][1]["allow"] = "any"
+default["bind9"]["channel"]["statistics-channels"][1]["inet"] = "127.0.0.1"
+default["bind9"]["channel"]["statistics-channels"][1]["port"] = "8123"
+default["bind9"]["channel"]["statistics-channels"][1]["allow"] = "any"
