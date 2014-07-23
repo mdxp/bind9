@@ -3,6 +3,7 @@ bind9 Cookbook
 A cookbook to manage bind DNS servers, and zones
 Support views,acl,master/slave using keys and many other options.
 
+Here is a repo with my lab , it will give you some good idea of how to use this cookbooks check it out: https://github.com/ramakuka/BInd9-Lab
 Requirements
 ------------
 This is a 'library' cookbook, so in order to get the most out of it you will need to have a wrapper cookbook
