@@ -1,0 +1,30 @@
+$TTL <%= @new_resource.ttl %>
+$ORIGIN <%= @new_resource.domain%>.
+<%= @new_resource.domain%>.		IN	SOA	<%= @new_resource.nameserver[0]%>. <%= @new_resource.email%>. (
+<% current_time = Time.now().strftime("%Y%m%d") %>
+				<%= current_time + node['bind9']['id'][@new_resource.view][@new_resource.type][@new_resource.domain].to_s.rjust(2, '0') %>		; Serial
+				<%= @new_resource.refresh %>			; Refresh
+				<%= @new_resource.retry %>			; Retry
+				<%= @new_resource.expire %>			; Expire
+				<%= @new_resource.neg_ttl %>			; TTL minimum
+)
+
+<% @new_resource.nameserver.each do |ns| %>
+@           IN NS    <%=ns%>.
+<% end %>
+
+<% @new_resource.subzones.each do |subnet,ns| %>
+<%=subnet%>           IN NS    <%=ns%>.
+<% end %>
+
+<% if @new_resource.mailserver.is_a?(String) %>
+@						IN	MX	10 <%=@new_resource.mailserver%>.
+<% elsif @new_resource.mailserver.is_a?(Hash) %>
+  <% @new_resource.mailserver.each do |server,priority| %>
+@           IN  MX  <%=priority%> <%=server%>.
+  <% end %>
+<% end %>
+
+<% @hosts.each do |name,opts| %>
+<%=name%>			IN		<%=opts[:type]%>		<%=opts[:priority]%>		<%= opts[:ip_name] %>
+<%end%>

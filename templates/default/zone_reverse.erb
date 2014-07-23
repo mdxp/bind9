@@ -1,0 +1,18 @@
+$TTL <%= @new_resource.ttl %>
+
+@		IN	SOA	<%= @new_resource.nameserver[0]%>. <%= @new_resource.email%>. (
+<% current_time = Time.now().strftime("%Y%m%d") %>
+        <%= current_time + node['bind9']['id'][@new_resource.domain].to_s.rjust(2, '0') %>    ; Serial
+        <%= @new_resource.refresh %>      ; Refresh
+        <%= @new_resource.retry %>      ; Retry
+        <%= @new_resource.expire %>     ; Expire
+        <%= @new_resource.neg_ttl %>      ; TTL minimum
+)
+
+<% @new_resource.nameserver.each do |ns| %>
+@           IN NS    <%=ns%>.
+<% end %>
+
+<% @ips.each do |ip,fqdn| %>
+<%=ip%>		PTR		<%=fqdn%>.		
+<%end%>
