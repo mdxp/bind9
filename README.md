@@ -3,7 +3,7 @@ bind9 Cookbook
 A cookbook to manage bind DNS servers, and zones
 Support views,acl,master/slave using keys and many other options.
 
-Here is a repo with my lab , it will give you some good idea of how to use this cookbooks check it out: https://github.com/ramakuka/BInd9-Lab
+Here is a repo with my lab, it will give you some good idea of how to use this cookbooks check it out: https://github.com/ramakuka/BInd9-Lab
 Requirements
 ------------
 This is a 'library' cookbook, so in order to get the most out of it you will need to have a wrapper cookbook
@@ -11,9 +11,9 @@ This is a 'library' cookbook, so in order to get the most out of it you will nee
 
 Attributes
 ----------
-This cookbook relay on attribute define in the wrapper cookbook.
+This cookbook relays on attributes defined in the wrapper cookbook.
 
-Channle
+Channel
 -------
 ```node[:bind9][:channel]``` Will be used to configure the channels like rndc or statistics-channels.
 the name of the channel should be specify as a hash and it will contain array of config parameters for example:
@@ -114,7 +114,7 @@ view "internal-view" {
 ```
 How to use the cookbook
 ------------------
-Just include the cookbook in your metadata set up the attribute and use the bind9_zone provider to craete new zone for example :
+Just include the cookbook in your metadata set up the attribute and use the bind9_zone provider to create a new zone for example:
 
 ```
 bind9_zone "Domain name" do
